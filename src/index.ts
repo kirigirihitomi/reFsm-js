@@ -1,4 +1,5 @@
-import { IState, } from './types'
+export * from './types'
+import { IState } from './types'
 import FSState from './state'
 
 class EmptyState implements IState {
@@ -34,7 +35,7 @@ export default class FiniteStateMechine extends EventTarget {
     return state
   }
 
-  getState(stateName: string): Nullable<FSState> {
+  getState(stateName: string): FSState | null {
     return this._states.get(stateName) || null
   }
 
@@ -42,14 +43,14 @@ export default class FiniteStateMechine extends EventTarget {
     this.push(stateName, this._pop(stateName))
   }
 
-  push(newState: string, lastState?: Nullable<string>): void {
+  push(newState: string, lastState?: string | null): void {
     if (!this._states.has(newState)) { throw 'no specific state' }
-    let lastName: Nullable<string> = lastState || this.currentState.stateName
+    let lastName: string | null = lastState || this.currentState.stateName
     this._stateStack.push(this._states.get(newState)!)
     this.currentState.stateObject.onEnter(lastName)
   }
 
-  private _pop(newName?: string): Nullable {
+  private _pop(newName?: string): string | null {
     let lastState = this.currentState
     this._stateStack.pop()
     let newStateName: string = newName || this.currentState.stateName

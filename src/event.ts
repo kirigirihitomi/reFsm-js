@@ -9,13 +9,13 @@ export default class FSEvent {
 
   protected _eventName: string
   protected _stateOwner: FSState
-  protected _targetState: Nullable<string>
+  protected _targetState: string
   protected _owner: FiniteStateMechine
   protected _type: EventType = null!
 
   action?: (params: any) => void = null!
 
-  constructor(name: string, target: Nullable<string>, state: FSState, owner: FiniteStateMechine, e: EnterState, pu: PushState, po: PopState) {
+  constructor(name: string, target: string, state: FSState, owner: FiniteStateMechine, e: EnterState, pu: PushState, po: PopState) {
     this._eventName = name
     this._targetState = target
     this._stateOwner = state
@@ -25,7 +25,7 @@ export default class FSEvent {
     this._onPopState = po
   }
 
-  enter(stateName: Nullable<string>): FSState {
+  enter(stateName: string): FSState {
     this._targetState = stateName
     this._type = EventType.ENTER
     return this._stateOwner

@@ -26,7 +26,7 @@ export default class FSState {
   get stateName() { return this._stateName }
 
   on(eventName: string, action?: (params: any) => void): FSEvent {
-    let newEvent = new FSEvent(eventName, null, this, this._owner, this._onEnterState, this._onPushState, this._onPopState)
+    let newEvent = new FSEvent(eventName, "", this, this._owner, this._onEnterState, this._onPushState, this._onPopState)
     newEvent.action = action
     this._translationEvents.set(eventName, newEvent)
     return newEvent

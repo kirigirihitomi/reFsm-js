@@ -1,6 +1,6 @@
 {
   "name": "refsm",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "finite state mechine for js",
   "main": "src/index.ts",
   "scripts": {
